@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1f5e">
+<title>XV Años · Ariadna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bloqueado">
+
+<!-- FONDO ESTÁTICO (img/fondo.jpg) + capas de efectos -->
+<div id="fondo" aria-hidden="true"></div>
+<canvas id="destellos" aria-hidden="true"></canvas>
+<div id="lanternas" aria-hidden="true"></div>
+<div id="lanternas-frente" aria-hidden="true"></div>
+
+<!-- ================= LIBRO DE CUENTOS (pantalla inicial) ================= -->
+<div id="intro">
+  <div class="intro-texto">Había una vez…</div>
+  <div class="libro" id="libro">
+    <div class="libro-paginas"></div>
+    <div class="libro-tapa">
+      <div class="tapa-frente">
+        <div class="tapa-ornamento"><span>XV</span></div>
+      </div>
+      <div class="tapa-dorso"></div>
+    </div>
+  </div>
+  <button class="btn btn-oro" id="btnAbrir"><span>Abrir cuento</span></button>
+</div>
+
+<!-- ================= CONTENIDO ================= -->
+<main id="contenido">
+
+  <!-- 1. PORTADA -->
+  <section class="pantalla portada">
+    <div class="torre"></div>
+    <div class="arco rev zoom">
+      <img src="img/portada.jpg" alt="Foto de la quinceañera">
+      <div class="mariposa m1"></div>
+    </div>
+    <h1 class="nombre rev up d2">Ariadna</h1>
+    <p class="xv rev up d3">XV AÑOS</p>
+    <div class="scroll-hint" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- 2. PERGAMINO -->
+  <section class="pantalla seccion-perg">
+    <div class="pergamino rev unroll">
+      <img class="flor f-sup" src="img/flores-izq-sup.png" alt="">
+      <img class="flor f-inf" src="img/flores-der-inf.png" alt="">
+      <div class="perg-texto">
+        <p class="p-peq">Con la bendición de Dios y el amor de mis padres</p>
+        <p class="p-nom">María Fernanda<br>Carlos Alejandro</p>
+        <p class="p-peq">Quiero invitarte a compartir conmigo la alegría de mis</p>
+        <p class="p-grande">Quince años</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CUENTA REGRESIVA -->
+  <section class="pantalla cuenta">
+    <p class="tit-seccion rev up">Falta poco para el gran día</p>
+    <div class="fecha-grande rev zoom d1">
+      <span id="diaSemana">Sábado</span>
+      <strong id="diaNum">19</strong>
+      <span id="mesAnio">Diciembre</span>
+    </div>
+    <div class="contador rev up d2" id="contador">
+      <div><b id="cd-d">00</b><small>días</small></div>
+      <div><b id="cd-h">00</b><small>horas</small></div>
+      <div><b id="cd-m">00</b><small>min</small></div>
+      <div><b id="cd-s">00</b><small>seg</small></div>
+    </div>
+  </section>
+
+  <!-- 4. GALERÍA -->
+  <section class="galeria-sec">
+    <p class="tit-seccion rev up">Nuestra galería</p>
+    <div class="carrusel rev zoom">
+      <div class="pista" id="pista">
+        <figure><img src="img/galeria/foto1.jpg" alt="Foto 1" loading="lazy"></figure>
+        <figure><img src="img/galeria/foto2.jpg" alt="Foto 2" loading="lazy"></figure>
+        <figure><img src="img/galeria/foto3.jpg" alt="Foto 3" loading="lazy"></figure>
+        <figure><img src="img/galeria/foto4.jpg" alt="Foto 4" loading="lazy"></figure>
+      </div>
+      <div class="puntos" id="puntos"></div>
+    </div>
+  </section>
+
+  <!-- 5. HORA Y LUGAR -->
+  <section class="pantalla lugar">
+    <div class="marco-oro rev zoom">
+      <i class="esq e1"></i><i class="esq e2"></i><i class="esq e3"></i><i class="esq e4"></i>
+      <h2 class="script">Hora y Lugar</h2>
+      <p class="hora">18:00 hrs</p>
+      <p class="sitio">Salón Aqua Reception Hall</p>
+      <p class="dir">Calle Ejemplo 1234, Ciudad</p>
+      <a class="btn btn-oro" id="btnMapa" href="#" target="_blank" rel="noopener"><span>Ver ubicación</span></a>
+    </div>
+  </section>
+
+  <!-- 6. ITINERARIO -->
+  <section class="itinerario">
+    <h2 class="script rev up">Itinerario</h2>
+    <ul class="linea">
+      <li class="rev left"><span class="ico">⛪</span><div><b>Ceremonia</b><em>17:00 hrs</em></div></li>
+      <li class="rev right"><span class="ico">🥂</span><div><b>Recepción</b><em>18:00 hrs</em></div></li>
+      <li class="rev left"><span class="ico">🍽️</span><div><b>Cena</b><em>19:30 hrs</em></div></li>
+      <li class="rev right"><span class="ico">💃</span><div><b>Vals</b><em>21:00 hrs</em></div></li>
+      <li class="rev left"><span class="ico">🎶</span><div><b>Baile</b><em>21:30 hrs</em></div></li>
+    </ul>
+  </section>
+
+  <!-- 7. FOTO PARALLAX -->
+  <section class="foto-par"><div class="par-img"></div></section>
+
+  <!-- 8. TARJETAS DE INFORMACIÓN -->
+  <section class="info">
+    <article class="tarjeta rev up">
+      <h3 class="script">Código de vestimenta</h3>
+      <p>Formal. Te pedimos evitar el color lila para que la quinceañera luzca como la princesa de la noche.</p>
+    </article>
+    <article class="tarjeta rev up">
+      <h3 class="script">Lluvia de sobres</h3>
+      <p>Tu presencia es el mejor regalo. Si deseas tener un detalle con nosotros, habrá una linda cajita para recibir tus buenos deseos.</p>
+    </article>
+    <article class="tarjeta rev up">
+      <h3 class="script">Importante</h3>
+      <p>Por favor confirma tu asistencia antes del 30 de noviembre. Los lugares son limitados.</p>
+    </article>
+  </section>
+
+  <!-- 9. CONFIRMACIÓN -->
+  <section class="pantalla confirma">
+    <div class="cuadro-confirma rev zoom">
+      <i class="esq e1"></i><i class="esq e2"></i><i class="esq e3"></i><i class="esq e4"></i>
+      <span class="orn">✦ ✦ ✦</span>
+      <h2 class="script">Confirma tu asistencia</h2>
+      <p>Será un honor contar contigo en esta noche mágica.</p>
+      <p class="limite">Responder antes del 30 de noviembre</p>
+      <label class="campo"><span>Tu nombre</span><input type="text" id="cfNombre" placeholder="Nombre y apellido" autocomplete="name"></label>
+      <label class="campo"><span>Número de asistentes</span>
+        <select id="cfPersonas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+      <button class="btn btn-oro grande" id="btnConfirmar"><span>Confirmar por WhatsApp</span></button>
+    </div>
+  </section>
+
+  <!-- 10. FINAL -->
+  <section class="final">
+    <div class="final-img"></div>
+    <div class="final-texto">
+      <p class="script">Gracias por ser parte de mi cuento</p>
+      <h2 class="nombre">Ariadna</h2>
+      <p class="xv">XV AÑOS</p>
+    </div>
+  </section>
+</main>
+
+<!-- Botón de música -->
+<button id="btnMusica" class="musica" aria-label="Música" hidden><span></span><span></span><span></span></button>
+<audio id="audio" preload="auto" loop></audio>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
