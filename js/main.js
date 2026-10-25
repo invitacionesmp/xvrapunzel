@@ -18,13 +18,14 @@
     l.innerHTML='<i class="halo"></i><img src="img/linterna.png" alt="">';
     caja.appendChild(l);
   }
-  const total=C.lanternas||14;
+  const total=(C.lanternas||14)+4;
   for(let i=0;i<total;i++) crearLampara($('#lanternas'),{min:22,max:70,op:.95,lejos:i%3===0});
-  for(let i=0;i<Math.max(5,Math.round(total/3));i++) crearLampara($('#lanternas-frente'),{min:20,max:44,op:.9});
 
   /* ---------- Destellos (canvas) ---------- */
   const cv=$('#destellos'), cx=cv.getContext('2d'); let W,H,parts=[];
-  function medir(){ const r=devicePixelRatio||1; W=cv.width=innerWidth*r; H=cv.height=innerHeight*r; }
+  let anchoPrev=0;
+  function medir(){ if(innerWidth===anchoPrev) return; anchoPrev=innerWidth;
+    const r=devicePixelRatio||1; W=cv.width=Math.round(cv.clientWidth*r); H=cv.height=Math.round(cv.clientHeight*r); }
   addEventListener('resize',medir); medir();
   function nuevo(x,y,burst){
     const r=devicePixelRatio||1;
