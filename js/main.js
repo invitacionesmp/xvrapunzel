@@ -6,6 +6,7 @@
 
   /* ---------- Nombre y textos desde config ---------- */
   $$('.nombre').forEach(n=>n.textContent=C.nombre);
+  $('#introTexto').textContent='Había una vez una princesa llamada '+C.nombre;
   $$('.xv').forEach(n=>n.textContent=C.subtitulo);
   document.title = C.subtitulo + ' · ' + C.nombre;
   $('#btnMapa').href = C.mapaUrl;
@@ -65,15 +66,22 @@
   });
 
   /* ---------- Abrir el libro ---------- */
-  const libro=$('#libro'), intro=$('#intro');
+  const libro=$('#libro'), intro=$('#intro'); let entro=false, puedeSaltar=false;
+  function entrar(){
+    if(entro) return; entro=true;
+    intro.classList.add('fuera'); document.body.classList.remove('bloqueado'); document.body.classList.add('abierto'); mariposaVuelo();
+    setTimeout(()=>intro.remove(),1800);
+  }
   $('#btnAbrir').addEventListener('click',e=>{
     e.currentTarget.style.pointerEvents='none';
     audio.play().catch(()=>{}); btnM.hidden=false;
-    libro.classList.add('abierto');
+    intro.classList.add('leyendo'); libro.classList.add('abierto');
     const r=libro.getBoundingClientRect(); explosion(r.left+r.width/2,r.top+r.height/2,90);
-    setTimeout(()=>{ intro.classList.add('fuera'); document.body.classList.remove('bloqueado'); document.body.classList.add('abierto'); mariposaVuelo(); },1700);
-    setTimeout(()=>intro.remove(),3300);
+    setTimeout(()=>explosion(r.left+r.width/2,r.top+r.height/2,50),2400);
+    setTimeout(()=>{ puedeSaltar=true; },5200);
+    setTimeout(entrar,7600);               // se lee la invitación y luego pasa sola
   });
+  intro.addEventListener('click',()=>{ if(puedeSaltar) entrar(); });   // o toca para continuar
   function mariposaVuelo(){
     const m=document.createElement('div'); m.className='mariposa vuelo'; document.body.appendChild(m);
     m.style.left='-60px'; m.style.top='70vh';
