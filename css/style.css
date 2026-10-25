@@ -7,23 +7,24 @@
   --f-titulo:'Cinzel','Trajan Pro',serif;
   --f-texto:'Cormorant Garamond',Georgia,serif;
   --ancho:480px;
+  --H:100vh;
 }
+@supports (height:100lvh){:root{--H:100lvh}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{font-family:var(--f-texto);color:#fff;background:var(--noche);overflow-x:hidden;font-size:18px}
-body.bloqueado{overflow:hidden;height:100vh}
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;max-width:100%}
+body{font-family:var(--f-texto);color:#fff;background:var(--noche);overflow-x:hidden;overflow-x:clip;max-width:100%;position:relative;font-size:18px}
+body.bloqueado{overflow:hidden;height:var(--H)}
 img{display:block;max-width:100%}
 .script{font-family:var(--f-script);font-weight:400}
 
 /* ===================== FONDO ESTÁTICO ===================== */
-#fondo{position:fixed;inset:0;z-index:-3;background:#1b1f5e url('../img/fondo.jpg') center/cover no-repeat}
-#destellos{position:fixed;inset:0;z-index:-2;width:100%;height:100%;pointer-events:none}
-#lanternas{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-#lanternas-frente{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+#fondo{position:fixed;top:0;left:0;width:100%;height:var(--H);z-index:-3;transform:translateZ(0);background:#1b1f5e url('../img/fondo.jpg') center/cover no-repeat}
+#destellos{position:fixed;top:0;left:0;z-index:-2;width:100%;height:var(--H);pointer-events:none}
+#lanternas{position:fixed;top:0;left:0;width:100%;height:var(--H);z-index:-1;pointer-events:none;overflow:hidden}
 
 /* Lámparas flotantes: suben desde abajo, brillan y se desvanecen arriba */
 .lantern{position:absolute;bottom:0;left:0;width:var(--s);will-change:transform,opacity;opacity:0;
-  transform:translate3d(0,20vh,0);animation:subir var(--t) linear var(--d) infinite}
+  transform:translate3d(0,20%,0);animation:subir var(--t) linear var(--d) infinite}
 .lantern img{position:relative;z-index:2;width:100%;height:auto;display:block;transform:rotate(10deg);
   animation:brilloLampara 2.2s ease-in-out infinite alternate;animation-delay:var(--g)}
 .lantern .halo{position:absolute;z-index:1;left:50%;top:48%;width:340%;aspect-ratio:1;margin:-170% 0 0 -170%;border-radius:50%;
@@ -31,24 +32,24 @@ img{display:block;max-width:100%}
   animation:halo 2.2s ease-in-out infinite alternate;animation-delay:var(--g);mix-blend-mode:screen}
 .lantern.lejos{filter:blur(1.2px)}
 @keyframes subir{
-  0%{transform:translate3d(0,20vh,0) rotate(-3deg);opacity:0}
+  0%{transform:translate3d(0,25%,0) rotate(-3deg);opacity:0}
   8%{opacity:var(--o,1)}
-  50%{transform:translate3d(var(--x),-55vh,0) rotate(3deg)}
+  50%{transform:translate3d(var(--x),calc(var(--H)*-.55),0) rotate(3deg)}
   80%{opacity:var(--o,1)}
-  100%{transform:translate3d(calc(var(--x)*-1),-125vh,0) rotate(-3deg);opacity:0}
+  100%{transform:translate3d(calc(var(--x)*-1),calc(var(--H)*-1.2),0) rotate(-3deg);opacity:0}
 }
 @keyframes brilloLampara{from{filter:brightness(.95) saturate(1)}to{filter:brightness(1.3) saturate(1.2)}}
 @keyframes halo{from{opacity:.55;transform:scale(.9)}to{opacity:1;transform:scale(1.15)}}
 
 /* ===================== LAYOUT ===================== */
-#contenido{max-width:var(--ancho);margin:0 auto;opacity:0;transition:opacity 1.6s ease}
+#contenido{max-width:var(--ancho);margin:0 auto;overflow-x:clip;width:100%;opacity:0;transition:opacity 1.6s ease}
 body.abierto #contenido{opacity:1}
-.pantalla{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;position:relative;text-align:center}
-.tit-seccion{font-family:var(--f-titulo);letter-spacing:.18em;text-transform:uppercase;font-size:.95rem;color:var(--oro-claro);text-shadow:0 0 14px rgba(255,200,90,.6);margin-bottom:22px}
+.pantalla{overflow-x:clip;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;position:relative;text-align:center}
+.tit-seccion{font-family:var(--f-titulo);letter-spacing:.14em;text-transform:uppercase;font-size:.88rem;color:var(--oro-claro);text-shadow:0 0 14px rgba(255,200,90,.6);margin-bottom:22px}
 .texto-claro{font-size:1.25rem;text-shadow:0 2px 8px rgba(0,0,0,.5);margin-bottom:26px}
 
 /* ===================== LIBRO / INTRO ===================== */
-#intro{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+#intro{position:fixed;top:0;left:0;width:100%;height:var(--H);z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
   background:rgba(14,12,48,.35);backdrop-filter:blur(2px);transition:opacity 1.4s ease,visibility 1.4s}
 #intro.fuera{opacity:0;visibility:hidden}
 .intro-texto{font-family:var(--f-script);font-size:2.6rem;color:var(--oro-claro);text-shadow:0 0 18px rgba(255,210,110,.8);animation:aparecer 2s ease both}
@@ -140,8 +141,8 @@ body.abierto #contenido{opacity:1}
   background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.06));backdrop-filter:blur(6px);border:1px solid rgba(255,230,160,.6)}
 .fecha-grande span{font-family:var(--f-titulo);letter-spacing:.3em;text-transform:uppercase;font-size:1rem;color:var(--oro-claro)}
 .fecha-grande strong{font-family:var(--f-script);font-weight:400;font-size:6.5rem;line-height:1.05;text-shadow:0 0 24px rgba(255,214,120,.8)}
-.contador{display:flex;gap:10px;margin-top:30px}
-.contador div{width:70px;padding:12px 0 8px;border-radius:14px;background:rgba(20,16,70,.55);border:1px solid rgba(255,230,160,.55);display:flex;flex-direction:column;align-items:center}
+.contador{display:flex;gap:8px;margin-top:30px;width:100%;max-width:330px}
+.contador div{flex:1 1 0;min-width:0;padding:12px 0 8px;border-radius:14px;background:rgba(20,16,70,.55);border:1px solid rgba(255,230,160,.55);display:flex;flex-direction:column;align-items:center}
 .contador b{font-family:var(--f-titulo);font-size:1.7rem;font-weight:600;display:inline-block}
 .contador b.tic{animation:tic .5s ease}
 .contador small{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--oro-claro)}
@@ -184,7 +185,7 @@ body.abierto #contenido{opacity:1}
 .linea em{font-size:1.05rem;color:var(--oro-claro)}
 
 /* ===================== 7. PARALLAX ===================== */
-.foto-par{height:70vh;position:relative;overflow:hidden;max-width:var(--ancho);margin:20px auto}
+.foto-par{height:70svh;position:relative;overflow:hidden;max-width:var(--ancho);margin:20px auto}
 .par-img{position:absolute;inset:-12% 0;background:url('../img/foto-parallax.jpg') center/cover no-repeat;will-change:transform}
 
 /* ===================== 8. TARJETAS ===================== */
