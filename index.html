@@ -34,14 +34,29 @@
 
 <!-- ================= LIBRO DE CUENTOS (pantalla inicial) ================= -->
 <div id="intro">
-  <div class="intro-texto">Había una vez…</div>
+  <div class="intro-texto" id="introTexto">Había una vez una princesa llamada Ariadna</div>
   <div class="libro" id="libro">
-    <div class="libro-paginas"></div>
-    <div class="libro-tapa">
-      <div class="tapa-frente">
-        <div class="tapa-ornamento"><span>XV</span></div>
+    <div class="libro-zoom">
+      <div class="lb-base"></div>
+      <!-- Hoja que aparece al abrir el libro -->
+      <div class="lb-pagina">
+        <span class="pg-orn s1">✦ ✧ ✦</span>
+        <div class="pg-wrap">
+          <p class="pg-linea pg-oro pg-a">Estás invitada/o</p>
+          <p class="pg-linea pg-oro pg-b">A MIS</p>
+          <p class="pg-linea pg-oro pg-c">XV</p>
+          <p class="pg-linea pg-oro pg-d">AÑOS</p>
+        </div>
+        <span class="pg-orn s2">✦ ✧ ✦</span>
       </div>
-      <div class="tapa-dorso"></div>
+      <!-- Portada que gira sobre el lomo -->
+      <div class="lb-tapa">
+        <div class="lb-dorso"></div>
+        <div class="lb-frente">
+          <!-- FOTO DEL CÍRCULO: reemplaza img/libro-circulo.jpg (600 × 790 px) -->
+          <img class="lb-foto" src="img/libro-circulo.jpg" alt="">
+        </div>
+      </div>
     </div>
   </div>
   <button class="btn btn-oro" id="btnAbrir"><span>Abrir cuento</span></button>
@@ -184,3 +199,4 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
