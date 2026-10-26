@@ -84,7 +84,7 @@ body.abierto #contenido{opacity:1}
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12cqw 9cqw;container-type:inline-size}
 .lb-pagina::before{content:"";position:absolute;inset:4.5cqw;border:1.5px solid rgba(184,134,43,.75);pointer-events:none}
 .lb-pagina::after{content:"";position:absolute;inset:6.3cqw;border:1px solid rgba(184,134,43,.45);pointer-events:none}
-.pg-oro{background:linear-gradient(100deg,#8a6420 0%,#e9c46a 25%,#fff1b8 45%,#d9a93e 60%,#8a6420 100%);background-size:220% auto;
+.pg-oro{background:linear-gradient(100deg,#7a561a 0%,#b8862b 26%,#dcae45 46%,#b07d22 64%,#7a561a 100%);background-size:220% auto;-webkit-text-stroke:.35px rgba(110,74,14,.55);
   -webkit-background-clip:text;background-clip:text;color:transparent;animation:oroBrillo 3.6s linear infinite}
 .pg-linea{opacity:0;clip-path:inset(0 100% 0 0);margin:0}
 .pg-wrap{filter:drop-shadow(0 1px 0 rgba(255,255,255,.7)) drop-shadow(0 2px 3px rgba(120,80,10,.4));display:flex;flex-direction:column;align-items:center;gap:2.5cqw}
